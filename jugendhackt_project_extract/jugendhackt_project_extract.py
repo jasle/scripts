@@ -23,11 +23,11 @@ for projekt in page.findAll("div",{"class":"teaser-item"})[1:]:
 		if m in locs:
 			loc = locs[m]
 	p["location"] = loc
-	r = re.findall("https://(www.)?hackdash.org/embed/projects/([a-f0-9]*)",b)
+	r = re.findall("(http|https)://(www.)?hackdash.org/embed/projects/([a-f0-9]*)",b)
 	h = True
 	if len(r) == 0:
 		h = False
-		r = re.findall("https://www.youtube.com/embed/[A-Za-z0-9_-]*",b)
+		r = re.findall("(http|https)://www.youtube.com/embed/[A-Za-z0-9_-]*",b)
 		url = r[0]
 	else:
 		url = "https://hackdash.org/projects/%s" % r[0][1]

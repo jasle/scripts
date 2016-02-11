@@ -30,13 +30,13 @@ for projekt in page.findAll("div",{"class":"teaser-item"})[1:]:
 		r = re.findall("(http|https)://www.youtube.com/embed/[A-Za-z0-9_-]*",b)
 		url = r[0]
 	else:
-		url = "https://hackdash.org/projects/%s" % r[0][1]
+		url = "https://hackdash.org/projects/%s" % r[0][2]
 	p["url"] = url
 	p["people"] = []
 	p["description"] = ""
 	p["title"] = ""
 	if h:
-		req = requests.get("https://hackdash.org/api/v2/projects/%s"%r[0][1])
+		req = requests.get("https://hackdash.org/api/v2/projects/%s"%r[0][2])
 		for f in req.json()['contributors']:
 			if f['provider'] == "github":
 				p["people"].append("https://github.com/%(username)s"%f)
